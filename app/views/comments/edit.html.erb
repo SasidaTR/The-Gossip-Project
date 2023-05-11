@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Éditer le Potin</h1>
+
+  <%= form_tag(gossip_comment_path(@gossip, @comment), method: 'patch') do %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= label_tag :content, "Le contenu de votre commentaire:" %><br>
+    <%= text_area_tag :content, @comment.content, size: '60' %>
+    <%= label_tag :tag, "Tags:" %><br>
+    <%= select_tag :tag, options_for_select(Tag.all.map { |tag| [tag.title, tag.id] }), prompt: "Sélectionner des tags", multiple: true %>
+    <%= submit_tag "Envoyer", data: { turbo: false } %>
+  <% end %>
+</div>
